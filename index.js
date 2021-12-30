@@ -2,6 +2,8 @@ const express = require('express')
 const app = express()
 const port = process.env.PORT || 3001
 const path = require('path')
+const cors = require('cors')
+app.use(cors())
 
 const db_models = require('./db_models')
 
@@ -10,6 +12,10 @@ app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS')
     res.setHeader('Allow-Control-Allow-Headers', 'Content-Type, Access-Control-Allow-Headers')
     next()
+})
+
+app.listen(port, () => {
+    console.log('app running on port ${port}.')
 })
 
 // routes ..
